@@ -44,7 +44,7 @@ const Product = () => {
             <img src="" alt="" className="w-3-5" />
             <img src="" alt="" className="w-3-5" />
             <img src="" alt="" className="w-3-5" />
-            <p>()</p>
+            <p>{productData.description}</p>
           </div>
           <p className="text-xl font-bold mb-4">{productData.price} {currency}</p>
           <p className=' text-gray-500 md:w-4/5'>{/*productData.description*/}</p>

@@ -55,43 +55,42 @@ const Collection = () => {
     
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
 
-      <div className='min-w-60'>
-        <p className='my-2 text-xl flex items-center cursor-pointer gap-2'>FILTRES</p>
-        <div className='border border-gray-300 pl-5 py-3 mt-6'>
+      <div className='min-w-60 mx-auto max-w-screen-xl px-4'>
+        <div className='border border-black-300  bg-black text-white pl-5 py-3 mt-6 rounded-lg'>
           <p className='mb-3 text-sm font-medium'> CATEGORIES</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-            <p className='flex gap-2'>
+            <p className='flex gap-2 text-white'>
               <input className='w-3' type="checkbox" value={'Femme'}
               onChange={toggleCategory} />Femme
             </p>
           </div>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-            <p className='flex gap-2'>
+            <p className='flex gap-2 text-white'>
               <input className='w-3' type="checkbox" value={'Homme'} onChange={toggleCategory} />Homme
             </p>
           </div>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-            <p className='flex gap-2'>
+            <p className='flex gap-2 text-white'>
               <input className='w-3' type="checkbox" value={'Enfant'} onChange={toggleCategory} />Enfant
             </p>
           </div>
 
         </div>
-        <div className=' border  border-gray-300 pl-5 py-3 my-5' >
+        <div className=' border  border-gray-300 bg-black text-white pl-5 py-3 mt-6 rounded-lg' >
           <p className='mb-3 text-sm font-medium'  > TYPE</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-            <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'pull'}  onChange={toggleType} />Pull
+            <p className='flex gap-2 text-white'>
+              <input className='w-3 text-white' type="checkbox" value={'outwear'}  onChange={toggleType} />OUTWEAR
             </p>
           </div>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-            <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'pantalon'}  onChange={toggleType}/>Pantalon
+            <p className='flex gap-2 text-white'>
+              <input className='w-3' type="checkbox" value={'vetements'}  onChange={toggleType}/>Vêtements
             </p>
           </div>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
-            <p className='flex gap-2'>
-              <input className='w-3' type="checkbox" value={'veste'} onChange={toggleType}/>Veste
+            <p className='flex gap-2 text-white'>
+              <input className='w-3' type="checkbox" value={'chaussures'} onChange={toggleType}/>Chaussures
             </p>
           </div>
 
