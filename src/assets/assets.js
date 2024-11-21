@@ -108,7 +108,6 @@ export const products = [
         sizes: ["S","M","L"],
         title: "PULL OVER",
         category: "Femme",
-        sizes: ["S","M","L"],
         type:"vetements",
         price: 59.90 
     },

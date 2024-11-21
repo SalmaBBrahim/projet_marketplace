@@ -13,7 +13,7 @@ import Product from './pages/Product';
 import { ShopContextProvider } from './context/ShopContext'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Cart from './pages/Cart';
-import { auth } from './firebase/firebase'; 
+import { auth } from './firebase/firebaseConfig'; 
 import Checkout from './pages/Checkout';
 import ConfirmationPage from './pages/ConfirmationPage';
 import Populaire from './components/Populaire/Populaire';  // Importer Populaire

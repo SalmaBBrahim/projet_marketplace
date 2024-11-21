@@ -1,7 +1,7 @@
 // SignUp.js
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import { auth } from '../../firebase/firebase';
+import { auth } from '../../firebase/firebaseConfig';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; 

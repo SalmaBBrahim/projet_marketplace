@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { ShopContext } from '../context/ShopContext';
 import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase/firebase'; // Assurez-vous d'importer le db correctement
+import { db } from '../firebase/firebaseConfig'; // Assurez-vous d'importer le db correctement
 import { toast } from 'react-hot-toast';
 import ProductItem from '../components/ProductItem'; // Assurez-vous que le composant ProductItem est importé
 

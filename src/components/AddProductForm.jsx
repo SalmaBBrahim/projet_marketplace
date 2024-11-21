@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
-import { db } from "../firebase/firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { db } from "../firebase/firebaseConfig";
+import { collection, addDoc, getDocs, query, orderBy, limit } from "firebase/firestore";
 
 const AddProductForm = () => {
   const [nom, setNom] = useState("");
@@ -10,29 +10,40 @@ const AddProductForm = () => {
   const [image, setImage] = useState(null);
   const [categorie, setCategorie] = useState("");
   const [taille, setTaille] = useState("");
+  const [type,setType]= useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validation des champs
-    if (!nom || !description || !prix || !categorie || !taille) {
+    if (!nom || !description || !prix || !categorie || !taille || !type) {
       toast.error("Tous les champs sont obligatoires !");
       return;
     }
 
-    // Création de l'objet produit
-    const newProduct = {
-      nom: nom.trim(),
-      description: description.trim(),
-      prix: parseFloat(prix), // Convertir le prix en nombre
-      image: image ? image.name : "Aucune image", // Ajouter l'image si elle existe
-      categorie,
-      taille,
-    };
 
     try {
+      const productsRef = collection(db, "produits");
+      const q = query(productsRef, orderBy("productId", "desc"), limit(1));  // Trier par productId et récupérer le dernier
+
+      const querySnapshot = await getDocs(q);
+
+       // Déterminer le prochain ID
+       const newProductId = querySnapshot.empty ? 1 : querySnapshot.docs[0].data().productId + 1
+       ;
+       const newProduct = {
+        productName: nom.trim(), 
+        description: description.trim(),
+        price: parseFloat(prix), // Convertir le prix en nombre
+        productImg: image ? image.name : "Aucune image", // Nom de l'image si elle existe
+        category: categorie,
+        type,
+        size: taille, // Tableau de tailles
+        productId: newProductId, // Nouveau ID incrémenté
+      };
+
       // Ajout du produit à Firestore
-      await addDoc(collection(db, "produits"), newProduct);
+      await addDoc(collection(db, "products"), newProduct);
       toast.success("Produit ajouté avec succès !");
       
       // Réinitialiser le formulaire
@@ -41,6 +52,7 @@ const AddProductForm = () => {
       setPrix("");
       setImage(null);
       setCategorie("");
+      setType("");
       setTaille("");
     } catch (error) {
       console.error("Erreur lors de l'ajout du produit :", error);
@@ -125,6 +137,23 @@ const AddProductForm = () => {
             <option value="enfant">Enfant</option>
           </select>
         </div>
+        <div className="mb-4">
+          <label htmlFor="categorie" className="block text-sm font-medium text-gray-700">
+            Sous Catégorie
+          </label>
+          <select
+            id="type"
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+            required
+            className="mt-1 p-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+          >
+            <option value="">Choisir une Sous Catégorie</option>
+            <option value="homme">Vetements</option>
+            <option value="femme">OUTWEAR</option>
+            <option value="enfant">Chaussures</option>
+          </select>
+        </div>
 
         <div className="mb-4">
           <label htmlFor="taille" className="block text-sm font-medium text-gray-700">
@@ -141,7 +170,6 @@ const AddProductForm = () => {
             <option value="S">S</option>
             <option value="M">M</option>
             <option value="L">L</option>
-            <option value="XL">XL</option>
           </select>
         </div>
 
